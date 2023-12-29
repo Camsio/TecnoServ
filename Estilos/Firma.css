@@ -1,0 +1,51 @@
+.firma {
+    width: 100%;
+    max-width: 150px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+.contenedore {
+    display: flex;
+    justify-content: space-between;
+    flex-direction: column;
+    text-transform: uppercase;
+    margin-left: 5%;
+    cursor: pointer;
+}
+
+.contenedore div{
+    padding: 5px;
+    margin: 15px;
+    background: linear-gradient(to right, #dbdada, #ffffff);
+    border-radius: 25px;
+    -webkit-box-shadow: -11px 9px 52px -12px rgba(0,0,0,0.55);
+    -moz-box-shadow: -11px 9px 52px -12px rgba(0,0,0,0.55);
+    box-shadow: -11px 9px 52px -12px rgba(0,0,0,0.55);
+    transition: all 0.5s ease-in-out;
+}
+.imagen-con-texto {
+    display: flex;
+    align-items: center;
+}
+.imagen-con-texto p {
+    margin-left: 2rem;
+}
+.contenedore div:hover {
+    transition: all 0.5s ease-in-out;
+    transform: scale(1.03);
+    background: linear-gradient(to right,#ececec, #ffffff);
+}
+.contenedore:hover .firma {
+    transform: scale(1);
+}
+.contenedore:hover p {
+    transform: scale(1);
+}
+
+.contenedore:hover {
+    color: inherit;
+    background: none;
+}

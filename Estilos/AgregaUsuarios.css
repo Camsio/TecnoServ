@@ -1,0 +1,138 @@
+/* .formu {
+    width: 350px;
+}
+.formulario {
+    background-color: rgb(0, 8, 126);
+}
+ */
+ .formulario {
+    margin: 20px;
+    text-align: center;
+  }
+  
+  .formu {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 25px;
+    border-radius: 25px;
+    background-color: rgb(255, 255, 255);
+    -webkit-box-shadow: -11px 9px 52px -12px rgba(0,0,0,0.55);
+    -moz-box-shadow: -11px 9px 52px -12px rgba(0,0,0,0.55);
+    box-shadow: -11px 9px 52px -12px rgba(0,0,0,0.55);
+  }
+
+  .formu label{
+    cursor: default;
+  }
+
+  input,
+  select {
+    appearance: none;
+    width: 100%;
+    padding: 8px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    box-sizing: border-box;
+    border: none;
+    border-bottom: 1px solid black;
+    border-radius: 5px 5px 0 0;
+    transition: 0.3s;
+  }
+  input:hover,
+  select:hover{
+    box-shadow: 0 0 5px rgba(140, 0, 255, 0.363); /* Agrega una sombra al enfocar */
+  }
+
+  input:focus,
+  select:focus {
+    outline: none;
+    border-bottom: 1px solid #9631f5; 
+    box-shadow: 0 2px 5px rgba(140, 0, 255, 0.363); /* Agrega una sombra al enfocar */
+  }
+
+  .button-send {
+    background-color: #9631f5;
+    margin-top: 10px;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .5s;
+  } 
+
+  .button-send:hover{
+    animation: activeButton .5s both;
+    box-shadow: -11px 9px 52px -12px rgba(0,0,0,0.55);
+    transform: scale(1.03);
+    background-color: rgb(231, 51, 231);
+  }
+.contenedorrandom {
+  display: flex;
+}
+.random {
+  float: right;
+  display: grid;
+  width: 10%;
+  height: 10%;
+  border-radius: 50px;
+  cursor: pointer;
+  padding: 3px;
+
+  &:hover {
+    background-color: #9631f528;
+    animation: spin .7s ease-in-out;
+    transition: .5s;
+  }
+}
+
+  @keyframes activeButton{
+    from{
+      background-color: rgb(160, 58, 255);
+    }
+    10%{
+      background: rgb(231, 51, 231);
+      background: linear-gradient(90deg, rgba(231, 51, 231,1) 0%, rgba(160,58,255,1) 20%, rgba(155,63,255,1) 100%);
+    }
+    20%{
+      background: rgb(231, 51, 231);
+      background: linear-gradient(90deg, rgba(231, 51, 231,1) 0%, rgba(160,58,255,1) 40%);
+    }
+    30%{
+      background: rgb(231, 51, 231);
+      background: linear-gradient(90deg, rgba(231, 51, 231,1) 0%, rgba(160,58,255,1) 60%);
+    }
+    40%{
+      background: rgb(231, 51, 231);
+      background: linear-gradient(90deg, rgba(231, 51, 231,1) 0%, rgba(160,58,255,1) 80%);
+    }
+    50%{
+      background: rgb(231, 51, 231);
+      background: linear-gradient(90deg, rgba(231, 51, 231,1) 20%, rgba(160,58,255,1) 100%);
+    }
+    70%{
+      background: rgb(231, 51, 231);
+      background: linear-gradient(90deg, rgba(231, 51, 231,1) 40%, rgba(160,58,255,1) 100%);
+    }
+    80%{
+      background: rgb(231, 51, 231);
+      background: linear-gradient(90deg, rgba(231, 51, 231,1) 60%, rgba(160,58,255,1) 100%);
+    }
+    90%{
+      background: rgb(231, 51, 231);
+      background: linear-gradient(90deg, rgba(231, 51, 231,1) 80%, rgba(160,58,255,1) 100%);
+    }
+    to{
+      background: rgb(231, 51, 231);
+      background: linear-gradient(90deg, rgba(231, 51, 231,1) 100%, rgba(160,58,255,1) 100%);
+    }
+  }
+
+  @keyframes spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to{
+      transform: rotate(360deg);
+    }
+  }

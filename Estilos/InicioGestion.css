@@ -1,0 +1,22 @@
+.contenedor {
+    height: 85vh;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    text-decoration: none;
+    color: inherit;
+}
+.contenedor div img {
+    width: 100%;
+    max-width: 300px;
+    cursor: pointer;
+}
+.contenedor div h3 {
+    text-align: center;
+    color: black;
+    text-transform: uppercase;
+}
+a{
+    text-decoration: none;
+}
