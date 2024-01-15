@@ -10,7 +10,8 @@ import Firma from './pages/Firma'
 import Stock from './pages/Stock' 
 import AgregaUsuarios from './pages/AgregaUsuarios'
 import EditaUsuario from './pages/EditaUsuario'
-import { Toaster } from 'react-hot-toast';
+import HacerFirma from './pages/HacerFirma'
+import { Toaster } from 'react-hot-toast'
 
 
 function App() {
@@ -51,6 +52,10 @@ function App() {
     {
       path: "/dashboard/firma",
       element: <div><MenuLateral/><div className="contenido"><Firma /></div></div>
+    },
+    {
+      path: "/dashboard/firma/hacerfirma",
+      element: <div><MenuLateral/><div className="contenido"><HacerFirma /> </div></div>
     },
     {
       path: "login",

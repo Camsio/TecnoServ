@@ -49,3 +49,10 @@
     color: inherit;
     background: none;
 }
+.seleccionarFirma{
+    height: 20vh;
+    width: 250vh;
+    background-color: #ffffff00;
+    border: solid #ffffff00;
+    /* opacity: 0; */
+}

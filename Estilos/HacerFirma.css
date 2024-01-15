@@ -1,0 +1,67 @@
+canvas {
+    border: 1px solid #0000002d;
+    box-shadow: 0px 0px 20px rgba(0, 0, 0, 0.3);
+    border-radius: 10px;
+    margin-top: 3%;
+    color: rgba(255, 255, 255, 0);
+    background-color: white;
+    width: 800px;
+     /* max-width: 800px; */
+    height: 400px; 
+}
+.botones{
+    display: flex;
+    height: 50%;
+    width: 10%;
+    list-style-type: none;
+    padding: 0;
+    flex-direction: row;
+    margin-left: 15%;
+    margin-top: 8%;
+}
+button{
+    margin: 15%;
+    background-color: white;
+    padding: 0px 40%;
+    border: 1px solid #b1b1b11f;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+}
+button:hover{
+    transition: 0.5s;
+    background-color: #df058a;
+    box-shadow: 0px 0px 20px #df058a;
+}
+.input-file-button:hover{
+    transition: 0.5s;
+    background-color: #df058a;
+    box-shadow: 0px 0px 20px #df058a;
+}
+.input-file-container {
+    position: relative;
+  }
+
+  /* Estilo para el botón */
+  .input-file-button {
+    /* background-color: #fff; */
+    padding: 6.52px 50%;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-left: 25%;
+    background-color: white;
+    border: 1px solid #b1b1b11f;
+    border-radius: 5px;
+    box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.3);
+    float: left;
+    margin-top: 28%;
+  }
+
+  /* Estilo para el input type="file" */
+  .input-file {
+    opacity: 0;
+    cursor: pointer;
+    display: none;
+    position: absolute;
+    
+  }

@@ -28,7 +28,7 @@ const Login = () => {
         localStorage.setItem("token",datareturn.data.token)
         axios.defaults.headers.common['token'] = localStorage.getItem('token');
         toast("Bienvenido De Nuevo", {
-          icon: '😈🔥',
+          icon: '😈🔥😳😳😳',
           style: {
               borderRadius: '10px',
               width:"500px",

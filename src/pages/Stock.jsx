@@ -1,8 +1,10 @@
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import React from 'react'
 import '/Estilos/Stock.css'
 import editar from '../assets/firma.svg'
-import EquipoService from '../../service/EquipoService';
+import EquipoService from '../../service/EquipoService'
+import agregar from '../assets/agregar.svg'
 
 const ContenedorFiltro = ({ equipos }) => {
     const [buscar, setBuscar] = useState('');
@@ -37,6 +39,12 @@ const ContenedorFiltro = ({ equipos }) => {
             value={buscar}
             onChange={buscador}
           />
+          <div className='contenedor-boton-agregar-usuario'>
+          <Link className='boton-agregar-usuario' to="/dashboard/gestion/stock/agregarequipo">
+            <img src={agregar} alt="" className='agregar' />
+            <label > Nuevo Equipo </label>
+          </Link>
+        </div>
         </label>
             <table className='tablastock'>
                 <thead>
@@ -111,7 +119,7 @@ const ContenedorFiltro = ({ equipos }) => {
     
     return (
       <div>
-        <h1>Contenedor con Espacios para Filtrar</h1>
+        <h1>Stock</h1>
         <ContenedorFiltro equipos={datosEquipos} />
       </div>
     );

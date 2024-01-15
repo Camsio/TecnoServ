@@ -14,6 +14,11 @@ const UsuarioService = {
 
     addUser: (data) => {
         return axios.post(url+'/usuario/create', data)
+    },
+
+    updateUser: (data) => {
+        console.log("----------Paso final api")
+        return axios.put(url+'/usuario/update', data)
     }
 
 }

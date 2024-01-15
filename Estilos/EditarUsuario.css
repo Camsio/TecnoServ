@@ -1,0 +1,42 @@
+.container {
+    position: relative;
+}
+.formularioeditor {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 20px;
+    z-index: 999;
+}
+.button-send, .button-cancel {
+    background-color: #9631f5;
+    margin-top: 10px;
+    color: white;
+    padding: 10px 25px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: .5s;
+  }
+.button-cancel {
+    margin-left: 70px;
+}
+.button-cancel:hover{
+    animation: activeButtone .5s both;
+    box-shadow: -11px 9px 52px -12px rgba(0,0,0,0.55);
+    transform: scale(1.03);
+    background-color: rgb(189, 32, 32);
+  }
+  @keyframes activeButton {
+  from {
+    background-color: rgb(255, 0, 0);
+    background: linear-gradient(90deg, rgba(255, 0, 0, 1) 100%, rgba(255, 0, 0, 1) 0%);
+  }
+  to {
+    background-color: rgb(255, 0, 0);
+    background: linear-gradient(90deg, rgba(255, 0, 0, 1) 0%, rgba(255, 0, 0, 1) 100%);
+  }
+}
+  
+  

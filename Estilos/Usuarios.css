@@ -85,6 +85,24 @@ a {
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
     transition: 0.5s;
 }
+.boton-exportar {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    border-radius: 25px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+    transition: 0.5s;
+    max-width: 250px;
+    &:hover{
+        cursor: pointer;
+        box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.5);        
+    }
+}
+.boton-exportar label:hover {
+    cursor: pointer;
+    
+}
 
 .boton-agregar-usuario:hover{
     cursor: pointer;

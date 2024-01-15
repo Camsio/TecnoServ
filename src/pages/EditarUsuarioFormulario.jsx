@@ -1,16 +1,10 @@
-import React, { useState, useEffect } from 'react'
-import '/Estilos/AgregaUsuarios.css'
-import UsuarioService from '../../service/UsuarioService'
+import React, {useState, useEffect} from 'react'
 import AreaService from '../../service/AreaService'
 import RolService from '../../service/RolService'
 import UbiService from '../../service/UbiService'
-import { useNavigate } from 'react-router-dom'
-import toast from 'react-hot-toast';
-import random from '../assets/random.svg'
+import '/Estilos/EditarUsuario.css'
 
-const AgregaUsuarios = () => {
-    
-    const navigate = useNavigate()
+const EditarUsuarioForm = ({ user, onSave, onCancel }) => {
 
 
     //Consultamos las áreas existentes para mostrar en el formulario
@@ -64,7 +58,6 @@ const AgregaUsuarios = () => {
         rolUsuario: '',
         areaUsuario: '',
         ubicacion: '',
-        contraseña: '',
     })
     
     const manualCambio = (e) => {
@@ -73,71 +66,27 @@ const AgregaUsuarios = () => {
              [e.target.name]: e.target.value 
             });
       };
-    
+    useEffect(() => {
+        setNuevoUsuario({
+          docIdentidadUsuario: user.doc_identidad,
+          nombreUsuario: user.nombre,
+          correo: user.correo,
+          rolUsuario: user.rol.id_rol, // Asegúrate de obtener el ID correcto del rol
+          areaUsuario: user.area.id_area, // Asegúrate de obtener el ID correcto del área
+          ubicacionUsuario: user.ubicacion.id_ubicacion, // Asegúrate de obtener el ID correcto de la ubicación
+        });
+      }, [user])
 
-const funcionAgregarUsuario = (e) =>{
-    e.preventDefault()
-    console.log(nuevoUsuario)
-    UsuarioService.addUser(nuevoUsuario)
-    .then(response => {
-        if (response.data.resultadoNewUsuario) {
-            toast(response.data.message, {
-                icon: '🥵🍆😳',
-                style: {
-                    borderRadius: '10px',
-                    width:"500px",
-                    background:"#bcf7c5"
-                  }
-              });
-              navigate('/dashboard/usuarios')            
-                
-            }
-          })
-          .catch(error => {
-            if(error.response.status==403){
-                error.response.data.errors.forEach(el => {
-                    if(el.msg != 'Invalid value'){
-                        toast(el.msg, {
-                            icon: '😱',
-                            style: {
-                                borderRadius: '10px',
-                                width:"500px",
-                                background:"#f7f7bc"
-                              },
-                          });
-                    }
-                });
-            }
-          })
-    }
 
-    
-    const  generarContrasena = () =>{
-        const caracteres = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789!@#$%&*()_+{}[]:;<>,.?";
-        let contrasena = "";
-        let longitud = 12;
-      
-        for (let i = 0; i < longitud; i++) {
-          const caracterAleatorio = caracteres.charAt(Math.floor(Math.random() * caracteres.length));
-          contrasena += caracterAleatorio;
-        }
-      
-        manualCambio({
-            target:{
-                name:"contraseña",
-                value:contrasena
-            }
-        })
-    }
 
   return (
-
-    <section className='formulario'>
+    <div className='container'>
+      <section className='formularioeditor'>
         <div className='formu'>
 
                 <div>
                     <label htmlFor="docIdentidadUsuario">Digite un documento de idenfiticacion:</label>
-                    <input name='docIdentidadUsuario' type="text" placeholder='NIT o C.C' value={nuevoUsuario.docIdentidadUsuario} onChange={manualCambio} />
+                    <input name='docIdentidadUsuario' type="text" placeholder='NIT o C.C' value={nuevoUsuario.docIdentidadUsuario} disabled />
                 </div>
                 <div>
                     <label htmlFor="nombreUsuario">Digite el nombre completo:</label>
@@ -148,7 +97,7 @@ const funcionAgregarUsuario = (e) =>{
                     <input name='correo' type="text" placeholder='elcorreo@gmail.com' value={nuevoUsuario.correo} onChange={manualCambio} />
                 </div>
                 <div>
-                    <label htmlFor="rolUsuario">Digite el Rol del usuario</label><select name='rolUsuario' id="" onChange={manualCambio}> 
+                    <label htmlFor="rolUsuario">Digite el Rol del usuario</label><select name='rolUsuario' id="" onChange={manualCambio} value={nuevoUsuario.rolUsuario}> 
                     {roles.map(el=>{
                         return <option value={el.id_rol} key={el.id_rol}>{el.tipo_rol}</option>
                     })}
@@ -156,7 +105,7 @@ const funcionAgregarUsuario = (e) =>{
                 </div> 
                 <div>
                     <label htmlFor="areaUsuario">¿En que area se encuentra?</label>
-                    <select name='areaUsuario' id="" onChange={manualCambio}> 
+                    <select name='areaUsuario' id="" onChange={manualCambio} value={nuevoUsuario.areaUsuario}> 
                     {areas.map(el=>{
                         return <option value={el.id_area} key={el.id_area}>{el.tipo_area}</option>
                     })}
@@ -164,23 +113,19 @@ const funcionAgregarUsuario = (e) =>{
                 </div>
                 <div>
                     <label htmlFor="ubicacionUsuario">¿En que ubicacion se encuentra?</label>
-                    <select name='ubicacionUsuario' id="" onChange={manualCambio}> 
+                    <select name='ubicacionUsuario' id="" onChange={manualCambio} value={nuevoUsuario.ubicacionUsuario}> 
                     {ubi.map(el=>{
                         return <option value={el.id_ubicacion} key={el.id_ubicacion}>{el.lugar}</option>
                     })}
                     </select>
                 </div> 
-                    <label htmlFor="contraseña" >Genere una contraseña</label>
-                <div className='contenedorrandom'>
-                    <input  name='contraseña' type="text" value={nuevoUsuario.contraseña} onChange={manualCambio} placeholder="Contraseña" />
-                    <img onClick={generarContrasena} src={random} alt="" className='random' />
-                    
-                </div> 
-                    <button type='button' className="button-send" onClick={funcionAgregarUsuario}>Enviar</button>
+                    <button className='button-send' onClick={() => onSave(nuevoUsuario)}>Guardar cambios</button>
+                    <button className='button-cancel' onClick={onCancel}>Cancelar</button>
         </div>
         
     </section>
+    </div>
   )
 }
 
-export default AgregaUsuarios
+export default EditarUsuarioForm
