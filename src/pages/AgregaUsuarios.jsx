@@ -71,8 +71,8 @@ const AgregaUsuarios = () => {
         setNuevoUsuario({
              ...nuevoUsuario, 
              [e.target.name]: e.target.value 
-            });
-      };
+            })
+      }
     
 
 const funcionAgregarUsuario = (e) =>{
@@ -82,13 +82,13 @@ const funcionAgregarUsuario = (e) =>{
     .then(response => {
         if (response.data.resultadoNewUsuario) {
             toast(response.data.message, {
-                icon: '🥵🍆😳',
+                icon: '✅✅✅',
                 style: {
                     borderRadius: '10px',
                     width:"500px",
                     background:"#bcf7c5"
                   }
-              });
+              })
               navigate('/dashboard/usuarios')            
                 
             }
@@ -98,7 +98,7 @@ const funcionAgregarUsuario = (e) =>{
                 error.response.data.errors.forEach(el => {
                     if(el.msg != 'Invalid value'){
                         toast(el.msg, {
-                            icon: '😱',
+                            icon: '❌❌❌',
                             style: {
                                 borderRadius: '10px',
                                 width:"500px",

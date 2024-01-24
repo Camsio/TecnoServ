@@ -109,4 +109,26 @@
   animation: logo-spin infinite 1s linear;
   
   }
+  
+}
+@media screen and (max-width: 1000px) {
+  .lateral {
+    min-height: 2vh;
+    width: 100%;
+    position: flex;
+    flex-direction: row;
+    justify-content: none;
+  }
+  .logo {
+    max-width: 50px;
+    
+  }
+  .imglat, .imglat2, .imglat3, .imglat4, .imglat5 {
+    max-width: 30px;
+    
+  }
+  .contenido{
+    margin-left: 0px;
+    
+  }
 }

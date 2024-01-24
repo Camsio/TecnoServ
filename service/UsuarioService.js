@@ -11,6 +11,12 @@ const UsuarioService = {
     getall: () => {
         return axios.get(url+'/usuario/select')
     },
+    getNomDoc: () => {
+        return axios.get(url+'/usuario/selectSencillo')
+    },
+    getall: () => {
+        return axios.get(url+'/usuario/select')
+    },
 
     addUser: (data) => {
         return axios.post(url+'/usuario/create', data)

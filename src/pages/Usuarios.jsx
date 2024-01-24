@@ -85,8 +85,6 @@ const Usuarios = () => {
   const [usuarioEditado, setUsuarioEditado] = useState(null)
   const [loader, setLoader] = useState(true)
   const [datosUsuarios, setDatosUsuarios] = useState([])
-  
-
   const [recargarPag, setRecargar] = useState(0)
 
   useEffect(() => {
@@ -110,7 +108,7 @@ const Usuarios = () => {
     .then(response => {
       if (response.data) {
           toast(response.data.message, {
-              icon: '🥵🍆😳',
+              icon: '✅✅✅',
               style: {
                   borderRadius: '10px',
                   width:"500px",
@@ -126,7 +124,7 @@ const Usuarios = () => {
               error.response.data.errors.forEach(el => {
                   if(el.msg != 'Invalid value'){
                       toast(el.msg, {
-                          icon: '😱',
+                          icon: '❌❌❌',
                           style: {
                               borderRadius: '10px',
                               width:"500px",

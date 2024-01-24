@@ -30,7 +30,7 @@ const EditarUsuarioForm = ({ user, onSave, onCancel }) => {
             setRoles([
                 {
                 "id_rol": "",
-                "tipo_rol": "Seleccione el"
+                "tipo_rol": "Seleccione el rol"
                 }, 
                 ...resultRol.data.rolesCreados
             ])
@@ -64,8 +64,8 @@ const EditarUsuarioForm = ({ user, onSave, onCancel }) => {
         setNuevoUsuario({
              ...nuevoUsuario, 
              [e.target.name]: e.target.value 
-            });
-      };
+            })
+      }
     useEffect(() => {
         setNuevoUsuario({
           docIdentidadUsuario: user.doc_identidad,
@@ -74,7 +74,7 @@ const EditarUsuarioForm = ({ user, onSave, onCancel }) => {
           rolUsuario: user.rol.id_rol, // Asegúrate de obtener el ID correcto del rol
           areaUsuario: user.area.id_area, // Asegúrate de obtener el ID correcto del área
           ubicacionUsuario: user.ubicacion.id_ubicacion, // Asegúrate de obtener el ID correcto de la ubicación
-        });
+        })
       }, [user])
 
 
@@ -121,9 +121,8 @@ const EditarUsuarioForm = ({ user, onSave, onCancel }) => {
                 </div> 
                     <button className='button-send' onClick={() => onSave(nuevoUsuario)}>Guardar cambios</button>
                     <button className='button-cancel' onClick={onCancel}>Cancelar</button>
-        </div>
-        
-    </section>
+            </div>
+     </section>
     </div>
   )
 }

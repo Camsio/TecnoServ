@@ -15,7 +15,7 @@
     border-collapse: collapse ;
     border-radius: 20px;
     margin-top: 2%;
-    margin-left: -80px;
+    margin-left: -300px;
 }
 a {
     color: inherit;
@@ -30,7 +30,7 @@ a {
 }
 .tablastock td {
     border-bottom: 1px solid black;
-    padding-left: 70px ;
+    padding-left: 70px;
     padding-right: 70px;
     text-align: left;
     padding-top: 1%;

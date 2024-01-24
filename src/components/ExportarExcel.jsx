@@ -20,7 +20,7 @@ class ExportButton extends React.Component {
     a.href = url
 
     // Set the desired filename for the downloaded file
-    a.download = 'Usuarios.xls'
+    a.download = 'Consultas.xls'
 
     // Simulate a click on the anchor to trigger download
     a.click()
