@@ -1,11 +1,12 @@
 .tabla {
     color: black;
-    table-layout: fixed;
-    border-collapse: collapse ;
+    border-collapse: collapse;
     border-radius: 5px;
     margin-top: 2%;
     background: #fff;
-    box-shadow: -11px 9px 52px -12px rgba(0,0,0,0.4);
+    box-shadow: -11px 9px 52px -12px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    overflow-x: auto;
 }
 a {
     color: inherit;
@@ -22,11 +23,9 @@ a {
 
 .tabla td {
     border-top: 1px solid rgba(0, 0, 0, 0.185);
-    padding-left: 50px ;
-    padding-right: 50px;
     text-align: left;
-    padding-top: 1%;
-    padding-bottom: 1%;
+    padding: 1% 1.5%;
+    white-space: nowrap; 
 }
 
 .tabla tr:hover {
@@ -52,15 +51,14 @@ a {
 
 .table-header{
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Dos columnas con el mismo ancho */
+    grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); 
     gap: 16px; /* Espacio entre las columnas */
     align-items: center; /* Centra los elementos verticalmente */
 }
 
 .filter-imput{
-    width: 90%;
+    width: 100%;
     padding: 8px;
-    margin-left: 2rem;
     border: none;
     border-radius: 25px;
     box-sizing: border-box;
@@ -70,7 +68,7 @@ a {
     max-width: 100%;
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: space-evenly;
 }
 
 
@@ -78,7 +76,7 @@ a {
 .boton-agregar-usuario{
     display: flex;
     align-items: center;
-    justify-content: end;
+    justify-content: center;
     background-color: #fff;
     border-radius: 25px;
     padding: 0px 10px;
@@ -93,7 +91,8 @@ a {
     border-radius: 25px;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
     transition: 0.5s;
-    max-width: 250px;
+    margin-top: 10px;
+    padding: 0px 10px;
     &:hover{
         cursor: pointer;
         box-shadow: 0px 8px 12px rgba(0, 0, 0, 0.5);        
@@ -112,4 +111,69 @@ a {
 .boton-agregar-usuario label{
     margin-left: 2px;
     cursor: pointer;
+}
+.card-content, .carta{
+    display: none;
+}
+
+@media screen and (max-width: 800px) {
+    .tabla{
+        display: none;
+    }
+    .carta {
+        display: block;
+        width: 100%;
+        background: rgb(255, 255, 255);
+        padding: 15px;
+        box-sizing: border-box;
+        overflow: hidden;
+        white-space: nowrap;
+        text-overflow: ellipsis;
+        margin-top: 20px;
+        border-radius: 20px;
+        border-top: solid .4rem #a244f8;
+        box-shadow: -11px 9px 52px -12px rgba(0, 0, 0, 0.4);
+    }
+    .carta .nombre-u-carta {
+        text-align: center;
+        margin-bottom: 5px;
+        font-size: 1.05rem;
+    }
+    .carta .editar-u-carta {
+        text-align: center;
+        margin-top: 15px;
+    }
+
+    .carta .editar-u-carta img {
+        cursor: pointer;
+        margin: 0 10px;
+        transition: .5s;
+        &:hover{
+            background-color: rgba(207, 131, 252, 0.219);
+        }
+    }
+
+    .carta .item-card-data{
+        color: rgb(138, 104, 161);
+    }
+
+    .card-content {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); 
+        gap: 30px;
+    }
+    
+    .table-header{
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); 
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .contenedor-boton-agregar-usuario{
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(100%, 1fr)); 
+    }
+    .boton-exportar{
+        margin-top: 20px;
+    }
 }

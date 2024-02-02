@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import HistorialService from '../../service/HistorialService'
 import toast from 'react-hot-toast'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import UsuarioService from '../../service/UsuarioService'
 
 const AsignaUsuario = ({asigna, onCancel}) => {
@@ -29,7 +29,7 @@ const AsignaUsuario = ({asigna, onCancel}) => {
     })
     const manualCambio = (e) => {
         setAsignar({
-             ...asignaUser, 
+             ...asignaUser,
              [e.target.name]: e.target.value 
             })
     }
@@ -44,16 +44,18 @@ const AsignaUsuario = ({asigna, onCancel}) => {
         console.log(asignaUser)
         HistorialService.addHistorial(asignaUser)
         .then(response => {
-            if (response.data.resultadoNewhistorial) {
+            if (response.data) {
                 toast(response.data.message, {
                     icon: '✅✅✅',
                     style: {
                         borderRadius: '10px',
                         width:"500px",
                         background:"#bcf7c5"
-                      }
-                  })
-                  navigate('/dashboard/gestion/stock')  
+                        }
+                    })
+                    /* navigate(`/dashboard/gestion/stock/validarinfo/${item.id_equipo}`)   */
+                }
+        })
             .catch(error => {
                 if (error.response.status==403){
                     error.response.data.errors.forEach(el => {
@@ -70,8 +72,6 @@ const AsignaUsuario = ({asigna, onCancel}) => {
                     })
                 }
             })
-            }
-        })
     }
 
   return (
@@ -99,6 +99,7 @@ const AsignaUsuario = ({asigna, onCancel}) => {
             </div>
             <button type='button' className="button-send" onClick={funcAsignaUser}>Enviar</button>
             <button className='button-cancel' onClick={onCancel}>Cancelar</button>
+            <button><Link to={`/dashboard/gestion/stock/validarinfo/${asigna.id_equipo}`}>ola</Link></button>
         </div>
 
 

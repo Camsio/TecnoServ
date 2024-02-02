@@ -14,6 +14,7 @@ import EditaUsuario from './pages/EditaUsuario'
 import HacerFirma from './pages/HacerFirma'
 import { Toaster } from 'react-hot-toast'
 import Historial from './pages/Historial'
+import ValidaPdf from './pages/validaPdf'
 
 
 function App() {
@@ -52,6 +53,10 @@ function App() {
       element: <div><MenuLateral/><div className="contenido"><Stock /></div></div>
     },
     {
+      path: "/dashboard/gestion/stock/validarinfo/:id_equipo",
+      element: <div><MenuLateral/><div className="contenido"><ValidaPdf /></div></div>
+    },
+    {
       path: "/dashboard/gestion/stock/historial/:id_equipo",
       element: <div><MenuLateral/><div className="contenido"><Historial /></div></div>
     },
@@ -70,6 +75,10 @@ function App() {
     {
       path: "login",
       element: <div><Login/></div>
+    },
+    {
+      path:"*",
+      element:"Error 404 pagina no encontrada XD, dedicate a otra cosa :p"
     }
     
   ]);

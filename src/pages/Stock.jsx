@@ -19,49 +19,59 @@ const ContenedorFiltro = ({ equipos, onEdit, onAsingar}) => {
   const buscador = (e) => {
     setBuscar(e.target.value)
   }
-  const datosFiltrados = equipos.filter((item) =>
-  Object.values(item).some(
-    (value) => typeof  value === 'string' && value.toLowerCase().includes(buscar.toLowerCase())
-    ))
+  const buscarEnObjeto = (valor, filtro) => {
+    if (typeof valor === 'object' && valor != null) {
+      // Si el valor es un objeto, realiza la búsqueda de manera recursiva
+      return Object.values(valor).some((nestedValue) => buscarEnObjeto(nestedValue, filtro))
+    } else if (typeof valor === 'string' && valor.toLowerCase().includes(filtro.toLowerCase())) {
+      return true
+    }
+    return false
+  }
+  
+  const datosFiltrados = equipos.filter((item) => Object.values(item).some((value) => buscarEnObjeto(value, buscar)))
+  
 
     return (
       <div>
-        <label>
-          Filtrar por texto:
+        <div className="table-header">
+          <label>
+            Filtrar por texto:
           <input
             type="text"
             value={buscar}
             onChange={buscador}
             className='filter-imput'
-          />
+            />
+          </label>
           <div className='contenedor-boton-agregar-usuario'>
           <Link className='boton-agregar-usuario' to="/dashboard/gestion/stock/agregarequipo">
             <img src={agregar} alt="" className='agregar' />
             <label > Nuevo Equipo </label>
           </Link>
+          <ExportButton tableId="tableId" />
         </div>
-        <ExportButton tableId="tableId" />
-        </label>
-            <table id='tableId' className='tablastock'>
-                <thead>
-                    <tr>
-                        <th>Editar</th>
-                        <th>Historial</th>
-                        <th>Usuario Asignado</th>
-                        <th>Id. Proveedor</th>
-                        <th>Placa</th>
-                        <th>Marca</th>
-                        <th>Tipo</th>
-                        <th>Contingencia</th>
-                        <th>Procesador</th>
-                        <th>Descripcion</th>
-                        <th>Sistema</th>
-                        <th>RAM</th>
-                        <th>Almacenamiento</th>
-                        <th>Estado</th>
-                        <th>Asignar Usuario</th>
-                    </tr>
-                    </thead>
+        </div>
+            <table id='tableId' className='tabla'>
+              <thead>
+                  <tr>
+                      <th>Editar</th>
+                      <th>Historial</th>
+                      <th>Usuario Asignado</th>
+                      <th>Id. Proveedor</th>
+                      <th>Placa</th>
+                      <th>Marca</th>
+                      <th>Tipo</th>
+                      <th>Contingencia</th>
+                      <th>Procesador</th>
+                      <th>Nombre Red</th>
+                      <th>Sistema</th>
+                      <th>RAM</th>
+                      <th>Almacenamiento</th>
+                      <th>Estado</th>
+                      <th>Asignar Usuario</th>
+                  </tr>
+                  </thead>
                     <tbody>
                     {datosFiltrados.map((item) => (
                     <tr key={item.id_equipo}>
@@ -80,9 +90,9 @@ const ContenedorFiltro = ({ equipos, onEdit, onAsingar}) => {
                         <td>{item.placa_numero_serie}</td>
                         <td>{item.marca.marca} </td>
                         <td>{item.tipo_equipo.tipo_equipo} </td>
-                        <td>{item.contingencia} </td>
+                        <td>{item.contingencia?"Si":"no"} </td>
                         <td>{item.procesador} </td>
-                        <td>{item.descripcion} </td>
+                        <td>{item.nombre_red} </td>
                         <td>{item.sistema_operativo} </td>
                         <td>{item.ram} </td>
                         <td>{item.almacenamiento} </td>
@@ -92,6 +102,27 @@ const ContenedorFiltro = ({ equipos, onEdit, onAsingar}) => {
                 ))}
                 </tbody>
             </table>
+            <div className="card-content">
+              {datosFiltrados.map((item) => (
+                <div className="carta" key={item.id_equipo}>
+                  <p className='nombre-u-carta'>Placa: {item.placa_numero_serie}</p> 
+                  <p><span className='item-card-data'>Usuario Asignado: </span> {item.historial[0]?.usuario?item.historial[0]?.usuario.nombre:"N/A"}</p> 
+                  <p><span className='item-card-data'>Id Proveedor: </span> {item.identificacion_prov}</p> 
+                  <p><span className='item-card-data'>Marca: </span> {item.marca.marca}</p> 
+                  <p><span className='item-card-data'>Tipo: </span> {item.tipo_equipo.tipo_equipo}</p> 
+                  <p><span className='item-card-data'>Contingencia: </span> {item.contingencia?"Si":"No"}</p> 
+                  <p><span className='item-card-data'>Procesador: </span> {item.procesador}</p> 
+                  <p><span className='item-card-data'>Nombre Red: </span> {item.nombre_red}</p> 
+                  <p><span className='item-card-data'>Sistema Operativo: </span> {item.sistema_operativo}</p> 
+                  <p><span className='item-card-data'>Ram: </span> {item.ram}</p> 
+                  <p><span className='item-card-data'>Almacenamiento: </span> {item.almacenamiento}</p> 
+                  <p><span className='item-card-data'>Estado: </span> {item.estado.estado}</p> 
+                  <p className='editar-u-carta'><Link to={`/dashboard/gestion/stock/historial/${item.id_equipo}`}><img src={historial} className='editar'  /></Link><img src={editar} onClick={()=> onEdit(item)} className='editar' /><img src={asignar} onClick={()=> onAsingar(item)} className='editar' /></p> 
+                  
+                </div>
+              ))}
+              
+            </div>
       </div>
     )
   }
@@ -112,19 +143,15 @@ const ContenedorFiltro = ({ equipos, onEdit, onAsingar}) => {
     }, [recargarPag])
 
     const manualEdit = (equipo) => {
-      console.log('Editando Equipo:', equipo)
       setEditando(true)
       setEquipoEditado(equipo)
     }
     const manualAsignar = (asing) => {
-      console.log('Asignando Equipo:', asing)
       setAsignando(true)
       setEquipoAsignado(asing)
     }
 
     const manualGuardado = (equipoActualizado) => {
-      console.log('Antes de la llamada a la API')
-      console.log(equipoActualizado)
       EquipoService.updateequipo(equipoActualizado)
       .then(response => {
         if (response.data) {
@@ -167,7 +194,6 @@ const ContenedorFiltro = ({ equipos, onEdit, onAsingar}) => {
       EquipoService.getequipos()
       .then(response => {
         setLoader(false)
-        console.log(response)
         if(response?.data.equipoConHistorial){
           setEquipos(response.data.equipoConHistorial)
         }

@@ -88,7 +88,7 @@ const EditarEquipoForm = ({equipo, onSave, onCancel}) => {
 
   return (
     <section className="formularioeditor">
-        <div className='formu' >
+        <div className='formu'>
             <div>
                 <label>Escriba identificación del Proveedor</label>
                 <input name='identificacionProv' type="text"  value={nuevoEquipo.identificacionProv} disabled />

@@ -56,7 +56,7 @@ const AgregaEquipo = () => {
         tipoEquipo: '',
         contingencia: '',
         procesador: '',
-        descripcion: '',
+        nombreRed: '',
         sistemaOperativo: '',
         ram: '',
         almacenamiento: '',
@@ -142,7 +142,7 @@ const AgregaEquipo = () => {
             <input name='procesador' type="text" onChange={manualCambio} />
         </div>
         <div>
-            <label>Escribe una descripcion del equipo</label>
+            <label>Escribe nombre de red</label>
             <input name='descripcion' type="text" onChange={manualCambio} />
         </div>
         <div>

@@ -1,18 +1,17 @@
 import '/Estilos/HacerFirma.css'
-import React, { useRef, useState } from 'react';
-import SignaturePad from 'react-signature-pad-wrapper';
-import toast from 'react-hot-toast';
-import FirmaService from '../../service/FirmaService';
-import createForm from './CrearPdf';
+import React, { useEffect, useRef, useState } from 'react'
+import SignaturePad from 'react-signature-pad-wrapper'
+import toast from 'react-hot-toast'
+import FirmaService from '../../service/FirmaService'
 const HacerFirma = () => {
-  const signatureRef = useRef(null);
+  const signatureRef = useRef(null)
 
   const limpiarFirma = () => {
-    signatureRef.current.clear();
-  };
+    signatureRef.current.clear()
+  }
 
-  /* const imageData = signatureRef.current.toDataURL();
-  const idUsuario = " "; // Reemplaza '123' con el ID real del usuario
+  /* const imageData = signatureRef.current.toDataURL()
+  const idUsuario = " " // Reemplaza '123' con el ID real del usuario
   
   // Realizamos la solicitud POST al servidor con el base64 de la firma y el ID
   fetch('http://127.0.0.1:1584/api-tecnoserv-v01/firma/create', {
@@ -70,8 +69,6 @@ const HacerFirma = () => {
 
   }
   
-  
-  
   return (
     <div className='gridmelito'>
       <center>
@@ -87,14 +84,14 @@ const HacerFirma = () => {
         <button className='buttonF' onClick={crearFirma} >
           Guardar Firma
         </button>
-        <button className='buttonF' onClick={createForm} >
+        <button className='buttonF' >
           Cargar Firma
         </button>
       </div>
     </div>
-  );
-};
+  )
+}
 
-  export default HacerFirma;
+  export default HacerFirma
 
   /* onChange={manualCambio} */

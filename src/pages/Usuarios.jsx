@@ -21,11 +21,19 @@ const DatosTabla = ({ usuarios, onEdit }) => {
   }
   
   
-  const datosFiltrados = usuarios.filter((item) =>
-  Object.values(item).some(
-    (value) => typeof  value === 'string' && value.toLowerCase().includes(filtro.toLowerCase())
-    )
-    )
+  
+const buscarEnObjeto = (valor, filtro) => {
+  if (typeof valor === 'object' && valor != null) {
+    // Si el valor es un objeto, realiza la búsqueda de manera recursiva
+    return Object.values(valor).some((nestedValue) => buscarEnObjeto(nestedValue, filtro));
+  } else if (typeof valor === 'string' && valor.toLowerCase().includes(filtro.toLowerCase())) {
+    return true;
+  }
+  return false;
+};
+
+const datosFiltrados = usuarios.filter((item) => Object.values(item).some((value) => buscarEnObjeto(value, filtro)));
+
     //Fin filtro
     
     return (
@@ -38,13 +46,13 @@ const DatosTabla = ({ usuarios, onEdit }) => {
           onChange={manualChangeFiltro}
           className='filter-imput'
         />
-        <div className='contenedor-boton-agregar-usuario'>
-          <Link className='boton-agregar-usuario' to="/dashboard/usuarios/agregausuario">
-            <img src={agregar} alt="" className='agregar' />
-            <label > Nuevo Usuario </label>
-          </Link>
-        </div>
-          <ExportButton tableId="tableId" />
+          <div className='contenedor-boton-agregar-usuario'>
+            <Link className='boton-agregar-usuario' to="/dashboard/usuarios/agregausuario">
+              <img src={agregar} alt="" className='agregar' />
+              <label > Nuevo Usuario </label>
+            </Link>
+            <ExportButton tableId="tableId" />
+          </div>
         </div>
 
       <table id='tableId' className='tabla'>
@@ -70,11 +78,26 @@ const DatosTabla = ({ usuarios, onEdit }) => {
               <td>{item.area.tipo_area}</td> 
               <td>{item.rol.tipo_rol}</td>
               <td>{item.ubicacion.lugar}</td>
-              <td>{item.estado_usuario}</td>
+              <td>{item.estado_usuario?"OK":"OKn't"}</td>
             </tr>
           ))}
         </tbody>
       </table>
+      <div className="card-content">
+      {datosFiltrados.map((item) => (
+        <div className="carta" key={item.doc_identidad}>
+          <p className='nombre-u-carta'>{item.nombre}</p> 
+          <p><span className='item-card-data'>ID: </span> {item.doc_identidad}</p> 
+          <p><span className='item-card-data'>correo:</span> {item.correo}</p> 
+          <p><span className='item-card-data'>Área:</span> {item.area.tipo_area}</p> 
+          <p><span className='item-card-data'>Rol:</span> {item.rol.tipo_rol}</p> 
+          <p><span className='item-card-data'>Ubicacion:</span> {item.ubicacion.lugar}</p> 
+          <p><span className='item-card-data'>Estado:</span> {item.estado_usuario?"OK":"OKn't"}</p> 
+          <p className='editar-u-carta'><img src={editar} onClick={()=> onEdit(item)} className='editar' alt="Editar" /></p>
+        </div>
+      ))}
+        
+      </div>
     </div>
   )
 }
@@ -161,7 +184,7 @@ const Usuarios = () => {
   
   return (
     <div>
-    <h1>Tabla de Usuarios</h1>
+    <h1>Datos De Usuarios</h1>
     {!loader && (
       <>
         <DatosTabla usuarios={datosUsuarios} onEdit={manualEdit} />

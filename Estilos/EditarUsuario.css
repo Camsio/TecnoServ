@@ -1,6 +1,11 @@
 .container {
-    position: relative;
+  display: block;
+  height: 100vh;
+  position: fixed;
+  width: 100%;
+  background: #5a5361a2;
 }
+
 .formularioeditor {
     position: fixed;
     top: 50%;

@@ -34,6 +34,19 @@ const Historial = ({histori}) => {
           ))}
         </tbody>
       </table>
+      <div className="card-content">
+      {histori.map((item) => (
+        <div className="carta" key={item.id_historial}>
+          <p className='nombre-u-carta'> Mov Nro: {item.id_historial}</p> 
+          <p><span className='item-card-data'>Id Equipo: </span> {item.id_equipo}</p> 
+          <p><span className='item-card-data'>Id Usuario: </span> {item.doc_identidad}</p> 
+          <p><span className='item-card-data'>Observaciones: </span> {item.observaciones}</p> 
+          <p><span className='item-card-data'>Fecha R: </span> {item.updatedAt}</p> 
+          <p className='editar-u-carta'>{item.ruta_acta} </p>
+        </div>
+      ))}
+        
+      </div>
     </div>
   )
 }
@@ -44,6 +57,7 @@ const datosHistorial = () => {
 
 
   useEffect(() => {
+    console.log(id_equipo)
     LlamarHistorial()
     console.log('Longitud de histori:', datosHistoriales.length)
   }, [id_equipo])
